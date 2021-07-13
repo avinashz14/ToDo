@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+  details of {{item.content}}
+{% endblock title %}
+
+{% block body %}
+
+{{item.user}}
+{{item.content}}
+
+
+{% endblock body %}

@@ -1,0 +1,25 @@
+{% extends "account/index.html" %}
+{% load static %}
+
+{% block title %}
+  login page
+{% endblock title %}
+
+{% block body %}
+{% if message %}
+    <div>{{message}}</div>
+{% endif %}
+<div class="container ml-50">
+    <div class="card">
+        <form action="{% url 'login' %}" method="post" autocomplete="off">
+            {% csrf_token %}
+           <div class="form-group">
+                <input type="text" class='form-flow' name="username" placeholder="Username">
+                <input type="password" name="password" placeholder="Password">
+                <input type="submit" value="Log in">
+           </div>
+        </form>   
+    </div>
+</div>
+
+{% endblock %}

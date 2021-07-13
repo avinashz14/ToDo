@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+  Todo list
+{% endblock title %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header shadow-small bg-dark    ">
+                <h1 class="display-5 text-info"><i class="fas fa-tasks"></i>  Todos</h1>
+                </div>
+                <div class="card-body">
+                <ul class="list-group ">
+                    <li class="list-group-item">
+                        <form action="{% url 'insert_todo_items' %}" method="POST" autocomplete="off">
+                            {% csrf_token %}
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" name="content" required>
+                                <!--placeholder="Add todo item" aria-label="Add todo item" aria-describedby="basic-addon2"-->
+                                <span class="input-group-text" id="basic-addon2">
+                                <button type="submit" class="btn btn-sm text-info">
+                                    <i class="fas fa-plus-circle fa-lg"></i>
+                                </button>    
+                                </span>
+                            </div>
+                        </form>
+                    </li>
+                {% if request.user.is_authenticated %}
+                    {% for todo in todo_list %}                   
+                    <li class="list-group-item"><a href="{% url 'todo_item' todo.pk  %}">{{todo.content}}</a> 
+                        <form action="{% url 'delete_todo_items' todo.id %}" method="POST" class="float-end d-inline ">
+                            {% csrf_token %}
+                            <button type="submit" class="btn">
+                                <i class="fas fa-trash-alt fa-lg text-danger float-end"></i>
+                            </button>    
+                        </form>
+                    </li>
+                    {% empty %}
+                    <li class="list-group-item">
+                        <span class="font-italic">
+                            No todo item found
+                        </span>
+                    </li>
+                    {% endfor %}
+                {% endif %}
+                </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load  static  %}
+
+
+{% block title %}
+  Welcome-{{user.username}}
+{% endblock title %}
+
+
+{% if message %}
+    <div>{{message}}</div>
+{% endif %}
+
+{% block dropdownmenu %}
+  <a href="#" class="dropdown-item">
+    Profile
+  </a>
+  <a href="#" class="dropdown-item">
+    My Jobs
+  </a>
+  <a href="#" class="dropdown-item">
+    My Searches
+  </a>
+  <a href="{%url 'logout' %}" class="dropdown-item">
+    <div class="dropdown-divider"></div>
+    Logout
+  </a>
+{% endblock dropdownmenu %}
+
+{% block body %}
+<div class="container">
+  <div class="row">
+      <div class="col-md-12">
+          <div class="fb-profile-block">
+              <div class="fb-profile-block-thumb cover-container" ></div>
+              <div class="profile-img">
+                  <a href="#">
+                      <img src="{% static 'img/cover-1.jpg' %}" alt="" title="">        
+                  </a>
+              </div>
+              <div class="profile-name">
+                  <h2>{{user.first_name}} {{user.last_name}}</h2>
+              </div>
+              
+              <div class="fb-profile-block-menu">
+                  <div class="block-menu">
+                      <ul>
+                          <li><a href="#">Timeline</a></li>
+                          <li><a href="#">about</a></li>
+                          <li><a href="#">Friends</a></li>
+                          <li><a href="#">Photos</a></li>
+                          <li><a href="#">More...</a></li>
+                      </ul>
+                  </div>
+                  <div class="block-menu">
+                      <ul>
+                          <li><a href="#">Timeline</a></li>
+                          <li><a href="#">about</a></li>
+                          <li><a href="#">Friends</a></li>
+                          <li><a href="#">Photos</a></li>
+                          <li><a href="#">More...</a></li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+{% endblock body %}
